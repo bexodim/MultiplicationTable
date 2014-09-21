@@ -38,11 +38,16 @@ class TestMultiplier < Test::Unit::TestCase
         assert_equal(0, @multiplier_zero.n)
     end
     
-    def test_twenty
-        @multiplier_tw = Multiplier.new(20)
-        assert_equal([2], @multiplier_tw.primes)
-        assert_equal([], @multiplier_tw.table)
-        assert_equal(20, @multiplier_tw.n)
+    def test_upper
+        @multiplier_upper = Multiplier.new(1000)
+        assert_equal([2], @multiplier_upper.primes)
+        assert_equal([], @multiplier_upper.table)
+        assert_equal(1000, @multiplier_upper.n)
+        @multiplier_upper.nprimes
+        assert_equal(7919, @multiplier_upper.primes.last)
+        assert_equal(1000, @multiplier_upper.primes.length)
+        @multiplier_upper.multiply
+        assert_equal(7919*7919, @multiplier_upper.table.last.last)
     end    
  
 end

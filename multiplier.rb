@@ -29,8 +29,12 @@ class Multiplier
                    else
                        # next prime unless we have checked all of the primes
                        # if num not divisible by any primes, then it is a prime
-                       if p == @primes.last
+                       # we can stop at the sqrt of the num to make it faster, because
+                       # if there were a larger number, it would have to be multiplied by
+                       # a smaller number
+                       if p == @primes.last || p >= Math.sqrt($num)
                            @primes << $num
+                           break
                        end
                    end
                    
@@ -46,7 +50,6 @@ class Multiplier
        @primes.each do |p|
            @table << [p] + @primes.collect { |n| n*p}
        end
-       print @table[0][1]
        #puts @table[0]
    end
     
